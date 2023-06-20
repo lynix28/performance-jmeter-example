@@ -1,5 +1,5 @@
 TESTFILE=$1
-RESULTFILE="jmeter.log"
+RESULTFILE="result.csv"
 OUTPUT_DIR=./reports
 HELPER_TEXT="[ HOW TO RUN ] \n ./run.sh YOUR_TESTFILE \n"
 
