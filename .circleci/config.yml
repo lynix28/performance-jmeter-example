@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: "Copy file to work directory"
-          command: mv . /app/
+          command: cp -r . /app/
       - run:
           name: "Add execute permission for 'run.sh'"
           command: |
