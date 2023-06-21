@@ -1,0 +1,33 @@
+version: 2.1
+jobs:
+  Testing:
+    docker:
+      - image: pridecontrol/jmeter:1.0.0
+    steps:
+      - checkout
+      - run:
+          name: "Copy file to work directory"
+          command: mv . /app/
+      - run:
+          name: "Add execute permission for 'run.sh'"
+          command: |
+            cd /app/
+            chmod +x run.sh
+      - run:
+          name: "Run a sample test"
+          command: |
+            cd /app/
+            ./run.sh ./scripts/Load_Test_Script_Example.jmx
+      - run:
+          name: "Wrapping Test Result"
+          command: |
+            tar -cvf artifact.tar ./app/reports
+          when: always
+      - store_artifacts:
+          path: artifact.tar
+
+
+workflows:
+  Test-Workflow:
+    jobs:
+      - Testing
